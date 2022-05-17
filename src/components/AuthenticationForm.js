@@ -84,6 +84,7 @@ export const AuthenticationForm = ({signUp, setUser}) => {
             res = await res.json();
             if (res.length > 0) {
                 setUser(res[0]);
+                sessionStorage.setItem('user', JSON.stringify(res[0]));
             } else {
                 setErrors({
                     ...errors,
@@ -133,6 +134,7 @@ export const AuthenticationForm = ({signUp, setUser}) => {
                         res = await res.json();
                         if (res.length > 0) {
                             setUser(res[0]);
+                            sessionStorage.setItem('user', JSON.stringify(res[0]));
                         } else {
                             setErrors({
                                 ...errors,

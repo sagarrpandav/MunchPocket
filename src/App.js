@@ -36,6 +36,9 @@ function App() {
     const [orderPage, setOrderPage] = useState(false);
     const [uploadReceipt, setUploadReceipt] = useState(false);
     useEffect(() => {
+        if (sessionStorage.user) {
+            setUser(JSON.parse(sessionStorage.user))
+        }
         verifyAuth();
     }, []);
     const verifyAuth = () => {
@@ -107,7 +110,7 @@ function App() {
 
     return (
         <div className='myBody'>
-            <Header setShowMap={setShowMap} setReefetch={setReefetch} user={user} setShowFilters={setShowFilters} showFilters={showFilters} filterName={filterName} setFilterName={setFilterName} rating={rating} setRating={setRating} price={price} setPrice={setPrice} cuisine={cuisine} setCuisine={setCuisine}/>
+            <Header setUser={setUser} setShowMap={setShowMap} setReefetch={setReefetch} user={user} setShowFilters={setShowFilters} showFilters={showFilters} filterName={filterName} setFilterName={setFilterName} rating={rating} setRating={setRating} price={price} setPrice={setPrice} cuisine={cuisine} setCuisine={setCuisine}/>
             {user ? <MainPage setShowMap={setShowMap} showMap={showMap} user={user} setShowFilters={setShowFilters} filterName={filterName} rating={rating} price={price} cuisine={cuisine} reefetch={reefetch} setReefetch={setReefetch}/> : <AuthenticationForm setUser={setUser} signUp={signIn}/>}
         </div>
     );

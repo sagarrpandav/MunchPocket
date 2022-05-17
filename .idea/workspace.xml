@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f3c1c2d0-7a25-45d9-a9c1-c38295b5d131" name="Changes" comment="First Commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthenticationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
     </list>
@@ -94,7 +95,7 @@
       <workItem from="1652736316762" duration="277000" />
       <workItem from="1652736667388" duration="47000" />
       <workItem from="1652736812948" duration="37478000" />
-      <workItem from="1652811300071" duration="3065000" />
+      <workItem from="1652811300071" duration="4086000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1652758043516</created>
@@ -145,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652811996453</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="First Commit">
+      <created>1652816743650</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652816743650</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

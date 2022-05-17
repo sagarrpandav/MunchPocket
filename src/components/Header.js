@@ -70,6 +70,7 @@ function timeout(ms) {
 
 export default function Header({
                                    user,
+                                    setUser,
                                    showFilters,
                                    filterName,
                                    setFilterName,
@@ -137,6 +138,16 @@ export default function Header({
                             sx={{backgroundColor: '#fbd867', textAlign: 'center'}}><Typography
                             sx={{fontWeight: "bold"}} variant='overline' color='black'> Upload
                             Receipt</Typography></Button></Grid>
+                        <Grid item sm={1}>
+                            <Button
+                                onClick={() => {
+                                    sessionStorage.removeItem('user');
+                                    setUser(null);
+                                }}
+                                sx={{backgroundColor: '#fbd867', textAlign: 'center'}}><Typography
+                                sx={{fontWeight: "bold"}} variant='overline' color='black'> Log
+                                Out </Typography></Button></Grid>
+
                         {showFilters && (
                             <>
                                 <Grid item sm={12} sx={{height: '2vh'}}/>
@@ -242,7 +253,7 @@ export default function Header({
             </Popup>}
             <Popup openPopup={openOrder} setOpenPopup={setOpenOrder} title='My Orders'>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table sx={{minWidth: 650}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Date</TableCell>
@@ -256,7 +267,7 @@ export default function Header({
                             {[]?.map((row) => (
                                 <TableRow
                                     key={row.name}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                 >
                                     <TableCell component="th" scope="row">
                                         {row.name}
