@@ -16,6 +16,7 @@ const SIGNEDOUT = 'You have logged out successfully';
 const WAITINGFOROTP = 'Enter OTP number';
 const VERIFYNUMBER = 'Verifying number (Country code +XX needed)';
 
+
 function App() {
 
     const [showFilters, setShowFilters] = useState(false);
@@ -24,7 +25,7 @@ function App() {
     const [filterName, setFilterName] = useState('');
     const [rating, setRating] = useState('0');
     const [price, setPrice] = useState('0');
-    const [cuisine, setCuisine] = useState('0');
+    const [cuisine, setCuisine] = useState('-1');
     const [session, setSession] = useState(null);
     const [otp, setOtp] = useState('');
     const [number, setNumber] = useState('+19293209172');

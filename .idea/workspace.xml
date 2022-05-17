@@ -1,46 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3c1c2d0-7a25-45d9-a9c1-c38295b5d131" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/AddQuestionForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AllActivity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AnswerQuestion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AuthForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AuthenticationForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ConfirmDialog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/IndivQuestionAnswer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MainPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Notification.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/OrderComponent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PageHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Popup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/QuestionAnswers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/RestaurantCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SideMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserActivity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserProfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/ActionButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/Button.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/Checkbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/Controls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/DatePicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/Input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/RadioGroup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/Select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/controls/TimePicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/useForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/useTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/munch-pocket.iml" beforeDir="false" afterPath="$PROJECT_DIR$/munch-pocket.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+    <list default="true" id="f3c1c2d0-7a25-45d9-a9c1-c38295b5d131" name="Changes" comment="First Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/OrderComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OrderComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/OrderComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OrderComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RestaurantCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RestaurantCard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,8 +96,16 @@
       <workItem from="1652736264536" duration="35000" />
       <workItem from="1652736316762" duration="277000" />
       <workItem from="1652736667388" duration="47000" />
-      <workItem from="1652736812948" duration="12661000" />
+      <workItem from="1652736812948" duration="19242000" />
     </task>
+    <task id="LOCAL-00001" summary="First Commit">
+      <created>1652758043516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1652758043516</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,5 +122,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
   </component>
 </project>
