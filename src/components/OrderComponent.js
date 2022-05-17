@@ -33,8 +33,8 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
             mode: 'dinein',
             rest_percent: restaurant.reward
         };
-        await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/order_mode', {method: 'POST', body: JSON.stringify(tmp)});
-
+        let res = await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/order_mode', {method: 'POST', body: JSON.stringify(tmp)});
+        return res;
     }
 
     useEffect(() => {
@@ -166,8 +166,10 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
                             src="https://d2o6c6evk5zqsg.cloudfront.net/images/webp/search/menu-icon.webp"/> View Menu
                     </div>
                     <div style={{cursor: "pointer"}} onClick={async () => {
-                        await placeOrder(selectedRestaurant);
-                        window.open(selectedRestaurant.orderUrl, '_blank');
+                        let res = await placeOrder(selectedRestaurant);
+                        res = await res.json()
+                        res = JSON.parse(res.body)
+                        window.open(selectedRestaurant.orderUrl + '?order_id=' + res.order_id, '_blank');
                     }}>
                         <DeliveryDiningIcon/> Order Now
                     </div>
