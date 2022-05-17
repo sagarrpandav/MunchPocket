@@ -43,9 +43,8 @@ function a11yProps(index) {
     };
 }
 
-export const MainPage = ({user, setShowFilters, filterName, rating, price, cuisine, reefetch, setReefetch}) => {
+export const MainPage = ({user, setShowFilters, filterName, rating, price, cuisine, reefetch, setReefetch, showMap, setShowMap}) => {
     const [value, setValue] = React.useState(0);
-    const [showMap, setShowMap] = useState(false);
     const [myLocation, setMyLocation] = useState(null);
     const [people, setPeople] = useState(0);
     const [date, setDate] = useState(null);
@@ -94,19 +93,19 @@ export const MainPage = ({user, setShowFilters, filterName, rating, price, cuisi
                             </div>
                             <br/>
                             <div style={{display: "flex", justifyContent: "center"}}>
-                                <Button text='Browse Restaurants' onClick={() => {setShowFilters(true);setShowMap(true);}}/>
+                                <Button sx={{backgroundColor: '#fbd867'}} text='Browse Restaurants' onClick={() => {setShowFilters(true);setShowMap(true);}}/>
                             </div>
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                                {myLocation == null ? (<Button onClick={() => {
+                                {myLocation == null ? (<Button sx={{backgroundColor: '#fbd867'}} onClick={() => {
                                     navigator.geolocation.getCurrentPosition(pos => {
                                         console.log(pos);
                                         setMyLocation({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
                                     });
                                 }} text='Get Your Location'/>) : (<Input disabled value={myLocation.latitude+', '+myLocation.longitude}/>)}
                                 <br/>
-                                <Button text='Explore restaurants' onClick={() => {setShowFilters(true);setShowMap(true);}}/>
+                                <Button sx={{backgroundColor: '#fbd867'}} text='Explore restaurants' onClick={() => {setShowFilters(true);setShowMap(true);}}/>
                             </div>
                         </TabPanel>
                         <TabPanel value={value} index={2}>
@@ -118,7 +117,7 @@ export const MainPage = ({user, setShowFilters, filterName, rating, price, cuisi
                                     });
                                 }} text='Get Your Location'/>) : (<Input disabled value={myLocation.latitude+', '+myLocation.longitude}/>)}
                                 <br/>
-                                <Button text='Explore restaurants' onClick={() => {setShowFilters(true);setShowMap(true);}}/>
+                                <Button sx={{backgroundColor: '#fbd867'}} text='Explore restaurants' onClick={() => {setShowFilters(true);setShowMap(true);}}/>
                             </div>
                         </TabPanel>
                     </Box>

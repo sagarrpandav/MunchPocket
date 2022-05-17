@@ -21,8 +21,9 @@ function App() {
 
     const [showFilters, setShowFilters] = useState(false);
     const [reefetch, setReefetch] = useState(false);
+    const [showMap, setShowMap] = useState(false);
     const [message, setMessage] = useState('Welcome to Demo');
-    const [user, setUser] = useState({id: 113, name: 'dssd dwaw'});
+    const [user, setUser] = useState(/*{id: 113, name: 'dssd dwaw'}*/);
     const [filterName, setFilterName] = useState('');
     const [rating, setRating] = useState('0');
     const [price, setPrice] = useState('0');
@@ -106,8 +107,8 @@ function App() {
 
     return (
         <div className='myBody'>
-            <Header setReefetch={setReefetch} user={user} showFilters={showFilters} filterName={filterName} setFilterName={setFilterName} rating={rating} setRating={setRating} price={price} setPrice={setPrice} cuisine={cuisine} setCuisine={setCuisine}/>
-            {user ? <MainPage user={user} setShowFilters={setShowFilters} filterName={filterName} rating={rating} price={price} cuisine={cuisine} reefetch={reefetch} setReefetch={setReefetch}/> : <AuthenticationForm signUp={signIn}/>}
+            <Header setShowMap={setShowMap} setReefetch={setReefetch} user={user} setShowFilters={setShowFilters} showFilters={showFilters} filterName={filterName} setFilterName={setFilterName} rating={rating} setRating={setRating} price={price} setPrice={setPrice} cuisine={cuisine} setCuisine={setCuisine}/>
+            {user ? <MainPage setShowMap={setShowMap} showMap={showMap} user={user} setShowFilters={setShowFilters} filterName={filterName} rating={rating} price={price} cuisine={cuisine} reefetch={reefetch} setReefetch={setReefetch}/> : <AuthenticationForm setUser={setUser} signUp={signIn}/>}
         </div>
     );
 }

@@ -12,14 +12,15 @@ const initialFValues = {
     mobile: '',
     gender: 'male',
     birthDate: new Date(),
+    userPassword: ''
 };
 const genderItems = [
-    { id: 'male', title: 'Male' },
-    { id: 'female', title: 'Female' },
-    { id: 'other', title: 'Other' },
+    {id: 'male', title: 'Male'},
+    {id: 'female', title: 'Female'},
+    {id: 'other', title: 'Other'},
 ]
 
-export const AuthenticationForm = ({signUp}) => {
+export const AuthenticationForm = ({signUp, setUser}) => {
     const validate = (fieldValues = values) => {
         let temp = {...errors}
         if ('firstName' in fieldValues)
@@ -30,6 +31,9 @@ export const AuthenticationForm = ({signUp}) => {
             temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? (fieldValues.email ? "" : "This field is required.") : "Email is not valid."
         if ('mobile' in fieldValues)
             temp.mobile = fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required."
+        if ('userPassword' in fieldValues) {
+            temp.userPassword = fieldValues.userPassword?.length > 8 ? "" : "Minimum 8 characters required.";
+        }
         setErrors({
             ...temp
         })
@@ -37,6 +41,22 @@ export const AuthenticationForm = ({signUp}) => {
         if (fieldValues == values)
             return Object.values(temp).every(x => x == "")
     }
+
+    const validateLogin = (fieldValues = values) => {
+        let temp = {...errors}
+        if ('email' in fieldValues)
+            temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? (fieldValues.email ? "" : "This field is required.") : "Email is not valid."
+        if ('userPassword' in fieldValues) {
+            temp.userPassword = fieldValues.userPassword?.length >= 8 ? "" : "Minimum 8 characters required.";
+        }
+        setErrors({
+            ...temp
+        })
+
+        if (fieldValues == values)
+            return Object.values(temp).every(x => x == "")
+    }
+
     const {
         values,
         setValues,
@@ -46,11 +66,30 @@ export const AuthenticationForm = ({signUp}) => {
         resetForm
     } = useForm(initialFValues, true, validate);
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        signUp();
+    const handleSubmit = async e => {
+        e.preventDefault();
         if (validate()) {
             //call signup
+            let res = await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/sign_up', {
+                method: 'POST', body: JSON.stringify(
+                    {
+                        first_name: values.firstName,
+                        last_name: values.lastName,
+                        date_of_birth: values.birthDate,
+                        phone_number: values.mobile,
+                        email: values.email,
+                        password: values.userPassword
+                    })
+            });
+            res = await res.json();
+            if (res.length > 0) {
+                setUser(res[0]);
+            } else {
+                setErrors({
+                    ...errors,
+                    email: "User already exists"
+                });
+            }
         }
     };
 
@@ -60,13 +99,42 @@ export const AuthenticationForm = ({signUp}) => {
                   xs={5}>
                 <Typography variant='h4'>Already a user ?</Typography>
                 <br/>
-                <Input label='Enter your phone number'/>
+                <Input label="Email"
+                       name="email"
+                       value={values.email}
+                       onChange={handleInputChange}
+                       error={errors.email}/>
                 <br/>
-                <Button type='submit' text='Get OTP'/>
+                <Input name="userPassword"
+                       type='password'
+                       label="Password"
+                       value={values.userPassword}
+                       error={errors.userPassword}
+                       onChange={handleInputChange}/>
+                <br/>
+                <Button text='Login' onClick={async () => {
+                    if (validateLogin()) {
+                        let res = await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/sign_in', {
+                            method: 'POST',
+                            body: JSON.stringify({email: values.email, password: values.userPassword})
+                        });
+                        res = await res.json();
+                        if (res.length > 0) {
+                            setUser(res[0]);
+                        } else {
+                            setErrors({
+                                ...errors,
+                                email: "Authentication Error",
+                                userPassword: "Authentication Error"
+                            });
+                        }
+                    }
+                }}/>
             </Grid>
             <Grid item xs={0.01} sx={{backgroundColor: "gray"}}/>
             <Grid item container xs={6.98} sx={{display: 'flex', alignItems: 'center'}} spacing={1}>
-                <Form style={{display: 'flex', flexDirection: 'column',width: '100%', height: '70vh'}} onSubmit={handleSubmit}>
+                <Form style={{display: 'flex', flexDirection: 'column', width: '100%', height: '70vh'}}
+                      onSubmit={handleSubmit}>
                     <Grid item xs={12} sx={{textAlign: 'center'}}>
                         <Typography variant='h4'>New to Munch-Pocket ? Sign up !</Typography>
                     </Grid>
@@ -114,9 +182,17 @@ export const AuthenticationForm = ({signUp}) => {
                                     items={genderItems}/>
                     </Grid>
                     <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
+                        <Input name="userPassword"
+                               type='password'
+                               label="Password"
+                               value={values.userPassword}
+                               error={errors.userPassword}
+                               onChange={handleInputChange}/>
+                    </Grid>
+                    <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
                         <Button
                             type="submit"
-                            text="Sign Up and Get OTP" />
+                            text="Sign Up and Get Verification Email"/>
                     </Grid>
                 </Form>
             </Grid>

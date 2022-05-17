@@ -8,6 +8,8 @@ import {RestaurantCard} from "./RestaurantCard";
 import Popup from "./Popup";
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 
+const allCuisines = [{"id": -1, title: 'No Filter'},{"id":0,"title":"Pizza"},{"id":1,"title":"American"},{"id":2,"title":"Drinks"},{"id":3,"title":"Italian"},{"id":4,"title":"Korean"},{"id":5,"title":"Brunch"},{"id":6,"title":"Japanese"},{"id":7,"title":"Asian"},{"id":8,"title":"Chinese"},{"id":9,"title":"Vegan / Vegetarian"},{"id":10,"title":"Greek"},{"id":11,"title":"Small Plates (inactive)"},{"id":12,"title":"Latin American"},{"id":13,"title":"Mediterranean"},{"id":14,"title":"Seafood"},{"id":15,"title":"Kosher"},{"id":16,"title":"Mexican"},{"id":17,"title":"Spanish / Tapas (inactive)"},{"id":18,"title":"Burgers"},{"id":19,"title":"Indian"},{"id":20,"title":"Sushi"},{"id":21,"title":"Thai"},{"id":22,"title":"Ramen"},{"id":23,"title":"Contemporary"},{"id":24,"title":"French"},{"id":25,"title":"Beer"},{"id":26,"title":"Traditional"},{"id":27,"title":"Vegetarian "},{"id":28,"title":"European (inactive)"},{"id":29,"title":"BBQ"},{"id":30,"title":"Spanish"}];
+
 export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, setReefetch, user}) => {
     const [restaurants, setRestaurants] = useState([]);
     const [showPopUp, setShowPopUp] = useState(false);
@@ -39,7 +41,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
                 body: JSON.stringify({
                     offset: offset,
                     name: filterName,
-                    cuisine: cuisine != -1 ? cuisine : '',
+                    cuisine: cuisine != -1 ? allCuisines.filter(i => i.id == cuisine)[0].title : '',
                     priceRating: price != 0 ? price : '',
                     rating: rating != 0 ? rating : ''
                 })
@@ -60,7 +62,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
                 body: JSON.stringify({
                     offset: reefetch ? 0 : offset,
                     name: filterName,
-                    cuisine: cuisine != -1 ? cuisine : '',
+                    cuisine: cuisine != -1 ? allCuisines.filter(i => i.id == cuisine)[0].title : '',
                     priceRating: price != 0 ? price : '',
                     rating: rating != 0 ? rating : ''
                 })
@@ -84,7 +86,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
                     body: JSON.stringify({
                         offset: 0,
                         name: filterName,
-                        cuisine: cuisine != -1 ? cuisine : '',
+                        cuisine: cuisine != -1 ? allCuisines.filter(i => i.id == cuisine)[0].title : '',
                         priceRating: price != 0 ? price : '',
                         rating: rating != 0 ? rating : ''
                     })
