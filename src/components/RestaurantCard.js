@@ -23,8 +23,11 @@ export const RestaurantCard = ({restaurant, selectRestaurant, showPopUp}) => {
                         <Typography variant='overline'>{restaurant.priceRating && Array(restaurant.priceRating).fill().map(i => ('$'))} | {restaurant.cuisines.map(i => i+ ',')}</Typography>
                     </Grid>
 
-                    <Grid item sm={12}>
+                    <Grid item sm={6}>
                         <Button onClick={() => {selectRestaurant(restaurant); showPopUp(true);}} sx={{backgroundColor: '#3a363d'}} text='View Details'/>
+                    </Grid>
+                    <Grid item sm={6}>
+                        <Button sx={{backgroundColor: '#fbd867',color:'black', borderRadius: '50%'}} text={restaurant.reward + '%'}></Button>
                     </Grid>
                 </Grid>
             </Grid>

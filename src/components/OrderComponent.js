@@ -9,6 +9,9 @@ import Popup from "./Popup";
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 
 const allCuisines = [{"id": -1, title: 'No Filter'},{"id":0,"title":"Pizza"},{"id":1,"title":"American"},{"id":2,"title":"Drinks"},{"id":3,"title":"Italian"},{"id":4,"title":"Korean"},{"id":5,"title":"Brunch"},{"id":6,"title":"Japanese"},{"id":7,"title":"Asian"},{"id":8,"title":"Chinese"},{"id":9,"title":"Vegan / Vegetarian"},{"id":10,"title":"Greek"},{"id":11,"title":"Small Plates (inactive)"},{"id":12,"title":"Latin American"},{"id":13,"title":"Mediterranean"},{"id":14,"title":"Seafood"},{"id":15,"title":"Kosher"},{"id":16,"title":"Mexican"},{"id":17,"title":"Spanish / Tapas (inactive)"},{"id":18,"title":"Burgers"},{"id":19,"title":"Indian"},{"id":20,"title":"Sushi"},{"id":21,"title":"Thai"},{"id":22,"title":"Ramen"},{"id":23,"title":"Contemporary"},{"id":24,"title":"French"},{"id":25,"title":"Beer"},{"id":26,"title":"Traditional"},{"id":27,"title":"Vegetarian "},{"id":28,"title":"European (inactive)"},{"id":29,"title":"BBQ"},{"id":30,"title":"Spanish"}];
+function randomIntFromInterval(min, max) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, setReefetch, user}) => {
     const [restaurants, setRestaurants] = useState([]);
@@ -23,12 +26,12 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
 
     const placeOrder = async (restaurant) => {
         let tmp = {
-            "user_id": user.id,
+            "user_id": user.user_id,
             "rest_id": restaurant.id,
             "date_planned": new Date().toDateString(),
             "time_planned": new Date().toLocaleTimeString(),
             mode: 'dinein',
-            rest_percent: 5
+            rest_percent: restaurant.reward
         };
         await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/order_mode', {method: 'POST', body: JSON.stringify(tmp)});
 
@@ -49,7 +52,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
             res = await res.json();
             let tmp = [];
             res.forEach(i => {
-                tmp.push(i['Item']);
+                tmp.push({...i['Item'], reward: randomIntFromInterval(5,23)});
             });
             setRestaurants(tmp);
         })();
@@ -70,7 +73,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
             res = await res.json();
             let tmp = [];
             res.forEach(i => {
-                tmp.push(i['Item']);
+                tmp.push({...i['Item'], reward: randomIntFromInterval(5,23)});
             });
             setReefetch(false);
             setRestaurants(reefetch ? [...tmp] : [...restaurants, ...tmp]);
@@ -94,7 +97,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
                 res = await res.json();
                 let tmp = [];
                 res.forEach(i => {
-                    tmp.push(i['Item']);
+                    tmp.push({...i['Item'], reward: randomIntFromInterval(5,23)});
                 });
                 setReefetch(false);
                 setRestaurants(reefetch ? [...tmp] : [...restaurants, ...tmp]);
@@ -116,7 +119,7 @@ export const OrderComponent = ({filterName, rating, price, cuisine, reefetch, se
                     }} item sm={12} sx={{backgroundColor: 'blue', height: '22vh'}}><RestaurantCard
                         restaurant={i} selectRestaurant={setSelectedRestaurant} showPopUp={setShowPopUp}/></Grid>);
                 })}
-                <Button text="Show More" onClick={() => {
+                <Button sx={{color: 'black', backgroundColor: '#fbd867'}} text="Show More" onClick={() => {
                     setOffset(offset + 10)
                 }}/>
 
