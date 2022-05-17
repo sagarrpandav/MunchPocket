@@ -5,10 +5,10 @@ export const RestaurantCard = ({restaurant, selectRestaurant, showPopUp}) => {
     return (
         <Card sx={{height: '100%'}}>
             <Grid container sx={{ backgroundColor: "#fffdfa",height: '100%'}}>
-                <Grid item sm={4} sx={{height: '100%'}}>
-                    <img style={{height:'21vh', width: '21vh', 'margin': '1%'}} src={restaurant.images[0].url}></img>
+                <Grid item sm={4.75} sx={{height: '100%'}}>
+                    <img style={{height:'22vh', width: '22vh', 'margin': '1%'}} src={restaurant.images[0].url}></img>
                 </Grid>
-                <Grid item container sm={8} sx={{height: '100%'}}>
+                <Grid item container sm={7.25} sx={{height: '100%'}}>
                     <Grid item sm={12}>
                         <Typography variant='h6'>{restaurant.name}</Typography>
                     </Grid>

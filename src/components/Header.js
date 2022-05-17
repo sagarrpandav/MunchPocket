@@ -16,7 +16,7 @@ const useStyles = theme => ({
 });
 
 const allCuisines = [{"id": -1, title: 'No Filter'},{"id":0,"title":"Pizza"},{"id":1,"title":"American"},{"id":2,"title":"Drinks"},{"id":3,"title":"Italian"},{"id":4,"title":"Korean"},{"id":5,"title":"Brunch"},{"id":6,"title":"Japanese"},{"id":7,"title":"Asian"},{"id":8,"title":"Chinese"},{"id":9,"title":"Vegan / Vegetarian"},{"id":10,"title":"Greek"},{"id":11,"title":"Small Plates (inactive)"},{"id":12,"title":"Latin American"},{"id":13,"title":"Mediterranean"},{"id":14,"title":"Seafood"},{"id":15,"title":"Kosher"},{"id":16,"title":"Mexican"},{"id":17,"title":"Spanish / Tapas (inactive)"},{"id":18,"title":"Burgers"},{"id":19,"title":"Indian"},{"id":20,"title":"Sushi"},{"id":21,"title":"Thai"},{"id":22,"title":"Ramen"},{"id":23,"title":"Contemporary"},{"id":24,"title":"French"},{"id":25,"title":"Beer"},{"id":26,"title":"Traditional"},{"id":27,"title":"Vegetarian "},{"id":28,"title":"European (inactive)"},{"id":29,"title":"BBQ"},{"id":30,"title":"Spanish"}];
-export default function Header({user, showFilters, filterName, setFilterName, cuisine, setCuisine, price, setPrice, rating, setRating}) {
+export default function Header({user, showFilters, filterName, setFilterName, cuisine, setCuisine, price, setPrice, rating, setRating, setReefetch}) {
 
     const classes = useStyles();
     const handleInputChange = (e) => {
@@ -82,7 +82,7 @@ export default function Header({user, showFilters, filterName, setFilterName, cu
                                     ]}/>
                                 </Grid>
                                 <Grid item sm={2} sx={{}}>
-                                    <Button text='Filter'/>
+                                    <Button text='Filter' onClick={() => {setReefetch(true);}}/>
                                 </Grid>
                                 <Grid item sm={12} sx={{height: '2vh'}}/>
                             </>

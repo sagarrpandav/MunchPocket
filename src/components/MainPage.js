@@ -43,7 +43,7 @@ function a11yProps(index) {
     };
 }
 
-export const MainPage = ({user, setShowFilters}) => {
+export const MainPage = ({user, setShowFilters, filterName, rating, price, cuisine, reefetch, setReefetch}) => {
     const [value, setValue] = React.useState(0);
     const [showMap, setShowMap] = useState(false);
     const [myLocation, setMyLocation] = useState(null);
@@ -123,7 +123,7 @@ export const MainPage = ({user, setShowFilters}) => {
                         </TabPanel>
                     </Box>
                 </Grid>
-            </Grid>) : (<OrderComponent/>)}
+            </Grid>) : (<OrderComponent user={user} filterName={filterName} rating={rating} price={price} cuisine={cuisine} reefetch={reefetch} setReefetch={setReefetch}/>)}
         </>
     )
 };
