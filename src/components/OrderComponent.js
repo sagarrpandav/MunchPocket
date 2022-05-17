@@ -67,9 +67,17 @@ export const OrderComponent = () => {
                     </GoogleMap>
                 ) : (<div>Loading ....</div>)}
             </Grid>
-            <Popup title={selectedRestaurant?.name}
+            {selectedRestaurant?.name && <Popup title={selectedRestaurant?.name}
                    openPopup={showPopUp}
-                   setOpenPopup={setShowPopUp}/>
+                   setOpenPopup={setShowPopUp}>
+                <div style={{height: '40vh',display: "flex", flexDirection: "row"}}>
+                    {selectedRestaurant?.images.map(i => (<img src={i.url}/>))}
+                </div>
+                <hr/>
+                <div>
+                    <Typography typography='body2'>The Scoop</Typography>
+                </div>
+            </Popup>}
         </Grid>
     )
 }
