@@ -95,6 +95,18 @@ export const AuthenticationForm = ({signUp, setUser}) => {
 
     return (
         <Grid container sx={{height: '80vh'}}>
+            <img style={{
+                position: 'absolute',
+                opacity: '0.15',
+                left: '0',
+                top: '0vh'
+            }} src='https://d2o6c6evk5zqsg.cloudfront.net/images/webp/home/Soba_Isolated.webp'/>
+            <img style={{
+                position: 'absolute',
+                opacity: '0.15',
+                right: '0',
+                top: '30vh'
+            }} src='https://d2o6c6evk5zqsg.cloudfront.net/images/webp/home/Steak_Isolated.webp'/>
             <Grid sx={{display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}} item
                   xs={5}>
                 <Typography variant='h4'>Already a user ?</Typography>

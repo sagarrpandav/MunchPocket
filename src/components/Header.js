@@ -10,7 +10,8 @@ import {
     Typography,
     InputLabel,
     OutlinedInput,
-    FormControl
+    FormControl,
+    Paper
 } from '@mui/material'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -24,6 +25,12 @@ import Select from "./controls/Select";
 import Popup from "./Popup";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const useStyles = theme => ({
     root: {
@@ -89,6 +96,7 @@ export default function Header({
     const [redeemValue, setRedeemValue] = useState(0);
     const [redeemSuccess, setRedeemSuccess] = useState(false);
     const [base64Str, setStr] = useState('');
+    const [receiptMessage, setReceiptMessage] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -172,9 +180,10 @@ export default function Header({
                                             ]}/>
                                 </Grid>
                                 <Grid item sm={2} sx={{}}>
-                                    <Button sx={{backgroundColor: '#fbd867', color:'black'}} text='Filter' onClick={() => {
-                                        setReefetch(true);
-                                    }}/>
+                                    <Button sx={{backgroundColor: '#fbd867', color: 'black'}} text='Filter'
+                                            onClick={() => {
+                                                setReefetch(true);
+                                            }}/>
                                 </Grid>
                                 <Grid item sm={12} sx={{height: '2vh'}}/>
                             </>
@@ -190,7 +199,7 @@ export default function Header({
                     </Grid>
                     <Grid item sm={6}>
                         <div style={{display: "flex", justifyContent: 'flex-end', alignItems: 'center'}}>
-                            <AccountBalanceWalletIcon sx={{color: '#fbd867',fontSize: '10vh'}}/>
+                            <AccountBalanceWalletIcon sx={{color: '#fbd867', fontSize: '10vh'}}/>
                             <Typography variant='h1'>{freshUser.wallet}</Typography>
                         </div>
                     </Grid>
@@ -231,7 +240,37 @@ export default function Header({
                     </Grid>}
                 </Grid>
             </Popup>}
-            <Popup openPopup={openOrder} setOpenPopup={setOpenOrder} title='My Orders'></Popup>
+            <Popup openPopup={openOrder} setOpenPopup={setOpenOrder} title='My Orders'>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Date</TableCell>
+                                <TableCell align="right">Time</TableCell>
+                                <TableCell align="right">Restaurant ID</TableCell>
+                                <TableCell align="right">Amount</TableCell>
+                                <TableCell align="right">Reward</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {[]?.map((row) => (
+                                <TableRow
+                                    key={row.name}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {row.name}
+                                    </TableCell>
+                                    <TableCell align="right">{row.calories}</TableCell>
+                                    <TableCell align="right">{row.fat}</TableCell>
+                                    <TableCell align="right">{row.carbs}</TableCell>
+                                    <TableCell align="right">{row.protein}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Popup>
             <Popup openPopup={openRedeem} setOpenPopup={setOpenRedeem} title='Upload Receipt'>
                 <div>
                     <label htmlFor="icon-button-file">
@@ -262,12 +301,22 @@ export default function Header({
                                 total: parseInt(res.Total),
                                 order_id: parseInt(res['Order Id'])
                             };
-                            await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/order_mode', {
+                            res = await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/order_mode', {
                                 method: 'POST',
                                 body: JSON.stringify(res)
                             });
+                            res = await res.json();
+                            res = JSON.parse(res['body']);
+                            setReceiptMessage(res);
+                            await timeout(5000);
+                            setReceiptMessage('');
                         }}/>
                     </label>
+                    <div>
+                        {receiptMessage != '' &&
+                        <Typography sx={{color: 'orange'}} variant='overline'>
+                            {JSON.stringify(receiptMessage)}</Typography>}
+                    </div>
                 </div>
             </Popup>
         </AppBar>
