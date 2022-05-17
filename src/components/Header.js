@@ -190,7 +190,7 @@ export default function Header({
                     </Grid>
                     <Grid item sm={6}>
                         <div style={{display: "flex", justifyContent: 'flex-end', alignItems: 'center'}}>
-                            <AccountBalanceWalletIcon sx={{fontSize: '10vh'}}/>
+                            <AccountBalanceWalletIcon sx={{color: '#fbd867',fontSize: '10vh'}}/>
                             <Typography variant='h1'>{freshUser.wallet}</Typography>
                         </div>
                     </Grid>
