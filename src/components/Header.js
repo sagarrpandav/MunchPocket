@@ -93,6 +93,7 @@ export default function Header({
     const [openOrder, setOpenOrder] = useState(false);
     const [openRedeem, setOpenRedeem] = useState(false);
     const [freshUser, setFreshUser] = useState(null);
+    const [orders, setOrders] = useState(null);
     const [redeemValue, setRedeemValue] = useState(0);
     const [redeemSuccess, setRedeemSuccess] = useState(false);
     const [base64Str, setStr] = useState('');
@@ -103,8 +104,9 @@ export default function Header({
             let res = await fetch('https://fnyq0pfg5e.execute-api.us-east-1.amazonaws.com/dev/get_user_details?user_id=' + user.user_id, {method: 'GET'});
             res = await res.json();
             setFreshUser(res.user[0]);
+            setOrders(res.orders)
         })();
-    }, [openAccount]);
+    }, [openAccount, openOrder]);
 
     return (
         <AppBar position="static" sx={!showFilters ? {
@@ -246,25 +248,23 @@ export default function Header({
                         <TableHead>
                             <TableRow>
                                 <TableCell>Date</TableCell>
-                                <TableCell align="right">Time</TableCell>
                                 <TableCell align="right">Restaurant ID</TableCell>
                                 <TableCell align="right">Amount</TableCell>
                                 <TableCell align="right">Reward</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {[]?.map((row) => (
+                            {orders?.map((row) => (
                                 <TableRow
                                     key={row.name}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row">
-                                        {row.name}
+                                        {row.date_upload}
                                     </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
+                                    <TableCell align="right">{row.rest_id}</TableCell>
+                                    <TableCell align="right">${row.total}</TableCell>
+                                    <TableCell align="right">${row.reward_given}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
